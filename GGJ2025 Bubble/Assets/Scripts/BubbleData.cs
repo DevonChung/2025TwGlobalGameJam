@@ -8,7 +8,9 @@ public class BubbleData : MonoBehaviour
     private BubbleAttribute data;
     private Vector2 direction;
     public float secToDestory;
-
+    public AudioClip SFX_Bubble_small;  // 背景音樂的音效
+    public AudioClip SFX_Bubble_medium;  // 背景音樂的音效
+    public AudioClip SFX_Bubble_big;  // 背景音樂的音效
     void Start()
     {
         
@@ -50,6 +52,7 @@ public class BubbleData : MonoBehaviour
 
         Debug.Log("data.score: " + data.score);
         BossGimmick.Instance.AddScore(data.score);
+        MusicManager.Instance.PlayEffectSound(SFX_Bubble_small);
     }
 
     IEnumerator DestroySelfAfterDelay()

@@ -5,9 +5,11 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance { get; private set; }
-    public AudioClip backgroundMusic;  // 背景音樂的音效
-    public AudioClip SFX_Bubble_1;  // 背景音樂的音效
-    private AudioSource audioSource;   // AudioSource 用於播放音樂
+
+    public AudioClip backgroundMusic;  // 背景音樂
+    private AudioSource backgroundAudioSource;
+
+    private List<AudioSource> effectAudioSources = new List<AudioSource>(); // 用來存儲特效音源
 
     void Awake()
     {
@@ -26,19 +28,41 @@ public class MusicManager : MonoBehaviour
     void Start()
     {
         // 確保有一個 AudioSource 組件，如果沒有，就添加一個
-        audioSource = gameObject.AddComponent<AudioSource>();
+        backgroundAudioSource = gameObject.AddComponent<AudioSource>();
         // 設置音樂為循環播放
-        audioSource.loop = true;
+        backgroundAudioSource.loop = true;
 
         // 設置音效並播放
-        audioSource.clip = backgroundMusic;
-        audioSource.Play();
+        backgroundAudioSource.volume = 0.1f;
+        backgroundAudioSource.clip = backgroundMusic;
+        backgroundAudioSource.Play();
     }
 
-    // 播放音效的方法，傳入音效的索引
-    public void PlaySound(int soundIndex)
+    // 播放特效音效
+    public void PlayEffectSound(AudioClip effectClip)
     {
+        // 創建一個新的 AudioSource 用來播放特效音效
+        AudioSource newEffectSource = gameObject.AddComponent<AudioSource>();
+        newEffectSource.clip = effectClip;
+        newEffectSource.volume = 1f;
+        newEffectSource.Play();
 
+        // 將新創建的音源添加到列表中，方便管理
+        effectAudioSources.Add(newEffectSource);
+
+        // 設定在音效播放結束後自動移除 AudioSource
+        Destroy(newEffectSource, effectClip.length);
+    }
+
+    // 停止所有特效音效
+    public void StopAllEffectSounds()
+    {
+        foreach (AudioSource audioSource in effectAudioSources)
+        {
+            audioSource.Stop();
+            Destroy(audioSource);  // 停止後刪除 AudioSource
+        }
+        effectAudioSources.Clear();  // 清空列表
     }
 
     // Update is called once per frame
