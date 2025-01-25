@@ -1,0 +1,87 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BubbleGeneratorControl : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public GameObject bubblePrefab; // 拖入你的 bubble prefab
+
+    public float interval; // 每次檢查的時間間隔
+    public float chance;  // 執行函數的概率 (0.0 ~ 1.0)
+    private bool isRunning = true;
+    public Vector2 direction;
+    public int maxScoreForOneBubble = 3;
+    private int layer;
+
+    void Start()
+    {
+        SpriteRenderer parentSpriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
+        if (parentSpriteRenderer != null)
+        {
+            // 獲取父物件的 sortingLayer
+            string parentLayerName = parentSpriteRenderer.sortingLayerName;
+            //layer = parentSpriteRenderer.;
+
+            Debug.Log("Parent Layer Name: " + parentLayerName);
+            //Debug.Log("Parent Layer ID: " + parentLayerID);
+        }
+        else
+        {
+            Debug.LogWarning("The parent does not have a SpriteRenderer!");
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private IEnumerator RandomCallRoutine()
+    {
+        Debug.Log("isRunning: " + isRunning);
+        while (isRunning) // 只要 isRunning 為 true，就繼續循環
+        {
+            Debug.Log("interval: " + interval);
+            yield return new WaitForSeconds(interval);
+
+            if (Random.value < chance)
+            {
+                Debug.Log("chance: " + chance);
+                CreateBubble();
+            }
+        }
+    }
+
+    public void CreateBubble()
+    {
+        Vector2 spawnPosition = transform.position; // 使用當前 GameObject 的位置
+
+        GameObject bubble = Instantiate(bubblePrefab, spawnPosition, Quaternion.identity);
+        float sizeTemp = new float[] { 0.5f, 0.75f, 1f }[Random.Range(0, 3)];
+        BubbleAttribute bubbleAttribute = new BubbleAttribute
+        {
+            size = sizeTemp,  // 隨機選擇 1, 2, 或 3
+            speed = Random.Range(1.0f, 5.0f),
+            score = maxScoreForOneBubble / sizeTemp,
+            direction = this.direction,
+            layer = this.layer,
+            itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length)
+        };
+		
+        BubbleData bubbleData = bubble.GetComponent<BubbleData>();
+        bubbleData.InitializeBubble(bubbleAttribute);
+
+    }
+
+    public void StartTigger()
+    {
+        StartCoroutine(RandomCallRoutine());
+    }
+
+    public void StopTigger()
+    {
+        isRunning = false;
+    }
+}
