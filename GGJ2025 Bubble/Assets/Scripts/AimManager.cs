@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class AimManager : MonoBehaviour
 {
@@ -13,10 +15,40 @@ public class AimManager : MonoBehaviour
     public LayerMask targetMask;
     public float jitterFrequence = 2;
     private float nextJitterTime; // 下次抖動的時間
+
+    private GraphicRaycaster graphicRaycaster;
+    private PointerEventData pointerEventData;
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
+        graphicRaycaster = canvas.GetComponent<GraphicRaycaster>();
+
+        // 初始化 PointerEventData
+        pointerEventData = new PointerEventData(EventSystem.current);
+    }
+
+    private void DetectUIElement(Vector2 position)
+    {
+        // 清除之前的 PointerEventData
+        pointerEventData.position = position;
+
+        // 保存射線檢測的結果
+        var results = new System.Collections.Generic.List<RaycastResult>();
+        graphicRaycaster.Raycast(pointerEventData, results);
+
+        // 檢查是否點擊到 UI 元件
+        foreach (var result in results)
+        {
+            Button button = result.gameObject.GetComponent<Button>();
+            if (button != null)
+            {
+                // 觸發按鈕的 onClick 事件
+                button.onClick.Invoke();
+                Debug.Log("點擊到按鈕：" + button.name);
+            }
+        }
     }
 
     public void SetCursor()
@@ -56,6 +88,7 @@ public class AimManager : MonoBehaviour
             // 判斷是否是特定物件
             if (clickedObject.CompareTag("BubbleObj"))
             {
+                clickedObject.GetComponent<BubbleData>().BurstBubble();
                 Debug.LogError("點擊到可互動物件！");
             }
         }
@@ -108,6 +141,7 @@ public class AimManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) == true)
         {
+            DetectUIElement(Input.mousePosition);
             Debug.Log("Original mouse in: " + newMousePosition);
             Debug.Log("new mouse  in: " + FinalMouseCursorPoint);
             ClickRoutine(newMousePosition);

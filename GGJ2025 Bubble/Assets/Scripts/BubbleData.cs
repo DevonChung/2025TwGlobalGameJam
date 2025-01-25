@@ -39,9 +39,15 @@ public class BubbleData : MonoBehaviour
         StartCoroutine(DestroySelfAfterDelay());
     }
 
+    public void DestroyBubbleSelf()
+    {
+        Destroy(this.gameObject);
+    }
+
     public void BurstBubble()
     {
-        
+        Animator _animator = this.GetComponent<Animator>();
+        _animator.SetTrigger("Burst");
     }
 
     IEnumerator DestroySelfAfterDelay()
