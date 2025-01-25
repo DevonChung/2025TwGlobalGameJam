@@ -9,7 +9,6 @@ public class BubbleData : MonoBehaviour
     private Vector2 direction;
     public float secToDestory;
 
-
     void Start()
     {
         data.bHasItem = true;
@@ -60,7 +59,13 @@ public class BubbleData : MonoBehaviour
         this.GetComponent<CircleCollider2D>().enabled = false;
         Animator _animator = this.GetComponent<Animator>();
         _animator.SetTrigger("Burst");
+<<<<<<< HEAD
         PerformItemRoutine();
+=======
+
+        Debug.Log("data.score: " + data.score);
+        BossGimmick.Instance.AddScore(data.score);
+>>>>>>> origin/main
     }
 
     IEnumerator DestroySelfAfterDelay()
