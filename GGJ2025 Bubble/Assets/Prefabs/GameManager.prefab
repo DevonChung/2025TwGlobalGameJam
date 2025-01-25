@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec22237e478ae4f4b9088348c0c99268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultBulletCount: 0
+  scoreBackgroundImage: {fileID: 6606052371848503017, guid: 2ba8aa3f67c7a614ea2176bfa8dce1ee, type: 3}
   bGimmickActive: 0
   BossLists:
   - {fileID: 0}

@@ -7,7 +7,7 @@ public class BubbleAttribute
     public float size;
     public float speed;
     public Vector2 direction;
-    public float score; // 用size算,越小分數越高
+    public int score; // 用size算,越小分數越高
     public int layer;   // 重疊時顯示用,1~100
     public ItemType itemType;
 }
@@ -21,7 +21,20 @@ public enum ItemType
 
 public class GameStatus
 {
-    public float score;
-    public float currentBulletCount;
+    // 當前分數
+    public int score;
+
+    // 當前子彈數量
+    public int currentBulletCount;
+
+    // 當前觸發的道具列表
     public List<ItemType> currentTriggeredItem;
+
+    // 構造函數，用於初始化數據
+    public GameStatus()
+    {
+        score = 0;
+        currentBulletCount = 0;
+        currentTriggeredItem = new List<ItemType>();
+    }
 }

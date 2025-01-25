@@ -11,7 +11,6 @@ public class BubbleGeneratorControl : MonoBehaviour
     public float chance;  // 執行函數的概率 (0.0 ~ 1.0)
     private bool isRunning = true;
     public Vector2 direction;
-    public int maxScoreForOneBubble = 3;
     private int layer;
 
     void Start()
@@ -60,11 +59,12 @@ public class BubbleGeneratorControl : MonoBehaviour
 
         GameObject bubble = Instantiate(bubblePrefab, spawnPosition, Quaternion.identity);
         float sizeTemp = new float[] { 0.5f, 0.75f, 1f }[Random.Range(0, 3)];
+        int scoreForSize = sizeTemp == 0.5f ? 3 : (sizeTemp == 0.75f ? 2 : 1);
         BubbleAttribute bubbleAttribute = new BubbleAttribute
         {
             size = sizeTemp,  // 隨機選擇 1, 2, 或 3
             speed = Random.Range(1.0f, 5.0f),
-            score = maxScoreForOneBubble / sizeTemp,
+            score = scoreForSize,
             direction = this.direction,
             layer = this.layer,
             itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length)

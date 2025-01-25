@@ -9,7 +9,6 @@ public class BubbleData : MonoBehaviour
     private Vector2 direction;
     public float secToDestory;
 
-
     void Start()
     {
         
@@ -48,6 +47,9 @@ public class BubbleData : MonoBehaviour
     {
         Animator _animator = this.GetComponent<Animator>();
         _animator.SetTrigger("Burst");
+
+        Debug.Log("data.score: " + data.score);
+        BossGimmick.Instance.AddScore(data.score);
     }
 
     IEnumerator DestroySelfAfterDelay()

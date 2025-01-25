@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secToDestory: 2
+  gameManager: {fileID: 6160216503382157749, guid: 3b34250cb15a70c48a8cc628888e5e36, type: 3}
 --- !u!58 &760654081495912896
 CircleCollider2D:
   m_ObjectHideFlags: 0
