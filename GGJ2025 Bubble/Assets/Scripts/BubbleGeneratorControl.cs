@@ -21,9 +21,6 @@ public class BubbleGeneratorControl : MonoBehaviour
             // 獲取父物件的 sortingLayer
             string parentLayerName = parentSpriteRenderer.sortingLayerName;
             //layer = parentSpriteRenderer.;
-
-            Debug.Log("Parent Layer Name: " + parentLayerName);
-            //Debug.Log("Parent Layer ID: " + parentLayerID);
         }
         else
         {
@@ -39,15 +36,12 @@ public class BubbleGeneratorControl : MonoBehaviour
 
     private IEnumerator RandomCallRoutine()
     {
-        Debug.Log("isRunning: " + isRunning);
-        while (isRunning) // 只要 isRunning 為 true，就繼續循環
+        while (isRunning)
         {
-            Debug.Log("interval: " + interval);
             yield return new WaitForSeconds(interval);
 
             if (Random.value < chance)
             {
-                Debug.Log("chance: " + chance);
                 CreateBubble();
             }
         }
