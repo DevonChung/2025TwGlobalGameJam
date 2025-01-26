@@ -61,17 +61,11 @@ public class BubbleData : MonoBehaviour
         this.GetComponent<CircleCollider2D>().enabled = false;
         Animator _animator = this.GetComponent<Animator>();
         _animator.SetTrigger("Burst");
-<<<<<<< HEAD
         PerformItemRoutine();
-=======
-
         Debug.Log("data.score: " + data.score);
         BossGimmick.Instance.AddScore(data.score);
-<<<<<<< HEAD
         MusicManager.Instance.PlayEffectSound(SFX_Bubble_small);
-=======
->>>>>>> origin/main
->>>>>>> origin/main
+
     }
 
     IEnumerator DestroySelfAfterDelay()
