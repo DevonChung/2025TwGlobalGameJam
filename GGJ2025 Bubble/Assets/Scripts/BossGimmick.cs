@@ -147,7 +147,7 @@ public class BossGimmick : MonoBehaviour
         PlayerPrefs.SetInt("FinalScore", gameStatus.score);
         Debug.LogError("FinalScore: " + gameStatus.score);
         PlayerPrefs.Save();
-
+        Cursor.visible = true;
         SetDefault();
 
         SceneManager.LoadScene("Finish");
