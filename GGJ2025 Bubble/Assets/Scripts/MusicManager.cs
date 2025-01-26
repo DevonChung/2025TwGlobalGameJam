@@ -24,6 +24,23 @@ public class MusicManager : MonoBehaviour
             Destroy(gameObject); // Destroy any duplicate instance
         }
     }
+
+    public void StopBackGroundMusic()
+    {
+        if (backgroundAudioSource)
+        {
+            backgroundAudioSource.Stop();
+        }
+    }
+
+    public void StartBackgourndMusic()
+    {
+        if (backgroundAudioSource)
+        {
+            backgroundAudioSource.Play();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,9 +50,9 @@ public class MusicManager : MonoBehaviour
         backgroundAudioSource.loop = true;
 
         // 設置音效並播放
-        backgroundAudioSource.volume = 0.3f;
+        backgroundAudioSource.volume = 0.5f;
         backgroundAudioSource.clip = backgroundMusic;
-        backgroundAudioSource.Play();
+       // backgroundAudioSource.Play();
     }
 
     // 播放特效音效

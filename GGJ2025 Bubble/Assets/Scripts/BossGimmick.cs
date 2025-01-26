@@ -60,6 +60,7 @@ public class BossGimmick : MonoBehaviour
         SetDefault();
         UpdateBulletDisplay();
         TriggetBubbleGenerator();
+        MusicManager.Instance.StartBackgourndMusic();
     }
 
     public void TriggetBubbleGenerator()
@@ -138,6 +139,7 @@ public class BossGimmick : MonoBehaviour
         if (gameStatus.currentBulletCount <= 0)
         {
             Debug.LogError("GameOver");
+            MusicManager.Instance.StopBackGroundMusic();
             GameOver();
         }
     }
