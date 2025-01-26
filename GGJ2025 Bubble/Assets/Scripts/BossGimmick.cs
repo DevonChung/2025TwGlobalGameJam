@@ -21,6 +21,10 @@ public class BossGimmick : MonoBehaviour
     public TextMeshProUGUI UnitsText;
 
     [ContextMenu("TriggerMyFunction")]
+    public GameObject[] bubbleGenerator;
+
+    public GameObject bulletBackgroundImage;
+
     public void MyFunction()
     {
         bStartGimmick = !bStartGimmick;
@@ -32,8 +36,6 @@ public class BossGimmick : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            gameStatus = new GameStatus();
-            gameStatus.currentBulletCount = defaultBulletCount;
             DontDestroyOnLoad(gameObject); // Optional: Preserve the object between scenes
         }
         else
@@ -52,7 +54,9 @@ public class BossGimmick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        gameStatus = new GameStatus();
+        gameStatus.currentBulletCount = defaultBulletCount;
+        UpdateBulletDisplay();
     }
 
     // Update is called once per frame
@@ -94,6 +98,7 @@ public class BossGimmick : MonoBehaviour
         {
             gameStatus.currentBulletCount--;
         }
+        UpdateBulletDisplay();
     }
 
     // 方法：減少子彈數量
@@ -103,6 +108,7 @@ public class BossGimmick : MonoBehaviour
         {
             gameStatus.currentBulletCount++;
         }
+        UpdateBulletDisplay();
     }
 
     // 方法：添加道具到觸發列表
@@ -117,6 +123,43 @@ public class BossGimmick : MonoBehaviour
         if (gameStatus.currentTriggeredItem.Contains(item))
         {
             gameStatus.currentTriggeredItem.Remove(item);
+        }
+    }
+
+    public void StartNewGame()
+    {
+        foreach (GameObject generator in bubbleGenerator)
+        {
+            if (generator.transform.childCount > 0)
+            {
+                Transform child = generator.transform.GetChild(0);
+                BubbleGeneratorControl bubbleScript = child.GetComponent<BubbleGeneratorControl>();
+
+                if (bubbleScript != null)
+                {
+                    bubbleScript.StartTigger();
+                }
+            }
+        }
+    }
+
+    void UpdateBulletDisplay()
+    {
+        if (bulletBackgroundImage == null)
+        {
+            Debug.LogError("BulletBackgroundImage is null！");
+            return;
+        }
+
+        int childCount = bulletBackgroundImage.transform.childCount;
+
+        Debug.LogError("aaaa " + gameStatus.currentBulletCount);
+        Debug.LogError("childCount " + childCount);
+
+        for (int i = 0; i < childCount; i++)
+        {
+            Transform child = bulletBackgroundImage.transform.GetChild(i);
+            child.gameObject.SetActive(i < gameStatus.currentBulletCount);
         }
     }
 }
