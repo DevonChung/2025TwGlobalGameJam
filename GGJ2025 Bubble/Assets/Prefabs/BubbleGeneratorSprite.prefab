@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1975825815474726076}
   - component: {fileID: 399555647670905193}
+  - component: {fileID: 6042666606307075998}
   m_Layer: 0
   m_Name: BubbleGeneratorSprite
   m_TagString: Untagged
@@ -85,6 +86,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6042666606307075998
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5188735525620977011}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a89d82dd56f3074d9b1f959d056748a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6384031637748703832
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,6 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 1631214608727041992, guid: 83ce1a99af465d7498d26351bf9cee31, type: 3}
+  _animator: {fileID: 6042666606307075998}
   interval: 1
   chance: 0.75
   direction: {x: -3.5, y: 2}
+  audioClip: {fileID: 8300000, guid: f2af6ea178e6ea648834fff6c030ad9a, type: 3}

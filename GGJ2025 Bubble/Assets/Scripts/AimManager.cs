@@ -60,43 +60,46 @@ public class AimManager : MonoBehaviour
 
     public void ClickRoutine(Vector2 mousePosition)
     {
-        BossGimmick.Instance.UseBullet();
-        MusicManager.Instance.PlayEffectSound(SFX_Pistol);
-        //Physics2D.Raycast(transform.position, travelDirection, 1.0f, layerMask);
-        Debug.Log("check click1:" + mousePosition);
-        Vector2 mouseCorrelationPosition = Camera.main.ScreenToWorldPoint(mousePosition); //
+        if (BossGimmick.Instance.gameStatus.currentBulletCount > 0)
+        { 
+            BossGimmick.Instance.UseBullet();
+            MusicManager.Instance.PlayEffectSound(SFX_Pistol);
+            //Physics2D.Raycast(transform.position, travelDirection, 1.0f, layerMask);
+            Debug.Log("check click1:" + mousePosition);
+            Vector2 mouseCorrelationPosition = Camera.main.ScreenToWorldPoint(mousePosition); //
 
 
-        Debug.Log("check click2:" + mouseCorrelationPosition);
+            Debug.Log("check click2:" + mouseCorrelationPosition);
 
-        RaycastHit2D hit = Physics2D.Raycast(mouseCorrelationPosition, Vector2.zero, Mathf.Infinity, targetMask);
+            RaycastHit2D hit = Physics2D.Raycast(mouseCorrelationPosition, Vector2.zero, Mathf.Infinity, targetMask);
 
-        //RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero, 1.0f, targetMask);
-        if (hit.collider != null)
-        {
-           
-            if (hit.collider.gameObject.tag == "EnemyObj")
+            //RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero, 1.0f, targetMask);
+            if (hit.collider != null)
             {
-                BossAnimObj bossAnimObj = hit.collider.gameObject.GetComponent<BossAnimObj>();
-                if (bossAnimObj != null)
-                { 
-                    bossAnimObj.GetHit();
+
+                if (hit.collider.gameObject.tag == "EnemyObj")
+                {
+                    BossAnimObj bossAnimObj = hit.collider.gameObject.GetComponent<BossAnimObj>();
+                    if (bossAnimObj != null)
+                    {
+                        bossAnimObj.GetHit();
+                    }
                 }
-            }
 
-    
-            GameObject clickedObject = hit.collider.gameObject;
 
-            Debug.LogWarning("click¡G" + clickedObject.name);
+                GameObject clickedObject = hit.collider.gameObject;
 
- 
-            if (clickedObject.CompareTag("BubbleObj"))
-            {
-                clickedObject.GetComponent<BubbleData>().BurstBubble();
+                Debug.LogWarning("click¡G" + clickedObject.name);
 
-                Debug.LogWarning("click¡I");
 
-               
+                if (clickedObject.CompareTag("BubbleObj"))
+                {
+                    clickedObject.GetComponent<BubbleData>().BurstBubble();
+
+                    Debug.LogWarning("click¡I");
+
+
+                }
             }
         }
     }

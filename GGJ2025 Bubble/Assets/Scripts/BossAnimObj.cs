@@ -25,12 +25,15 @@ public class BossAnimObj : MonoBehaviour
     private Vector3 startPosition; // 初始位置
     private Vector3 targetPosition; // 目標位置
     private bool isMoving = false; // 控制是否正在移動
-
+    public AudioClip audioClip;
     public float StopSecond = 3f;
 
     public void GetHit()
     {
-        Debug.Log("fffff");
+        if (audioClip)
+        { 
+            MusicManager.Instance.PlayEffectSound(audioClip);
+        }
         if (bHitted == false)
         { 
             GetComponent<SpriteRenderer>().sprite = HitBoss;

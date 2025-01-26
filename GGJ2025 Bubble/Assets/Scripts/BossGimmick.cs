@@ -8,7 +8,7 @@ public class BossGimmick : MonoBehaviour
     public static BossGimmick Instance { get; private set; }
 
     public int defaultBulletCount;
-    private GameStatus gameStatus;
+    public GameStatus gameStatus;
 
     public bool bGimmickActive = false;
     public List<BossAnimObj> BossLists;
@@ -20,10 +20,11 @@ public class BossGimmick : MonoBehaviour
     public TextMeshProUGUI TensText;
     public TextMeshProUGUI UnitsText;
 
-    [ContextMenu("TriggerMyFunction")]
     public GameObject[] bubbleGenerator;
 
     public GameObject bulletBackgroundImage;
+
+    public int BossTriggerBulletNum = 4;
 
     public void MyFunction()
     {
@@ -43,6 +44,7 @@ public class BossGimmick : MonoBehaviour
             Debug.LogWarning("Duplicate Singleton instance detected. Destroying duplicate.");
             Destroy(gameObject); // Destroy any duplicate instance
         }
+        CurrentAccTime = GimmickFrequency;
     }
 
     public void TriggerBossTrap()
@@ -62,6 +64,10 @@ public class BossGimmick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameStatus.currentBulletCount< BossTriggerBulletNum)
+        {
+            bStartGimmick = true;
+        }
         if (bStartGimmick)
         {
           
@@ -75,6 +81,12 @@ public class BossGimmick : MonoBehaviour
                 CurrentAccTime += Time.deltaTime;
             }
         }
+
+        if (gameStatus.currentBulletCount == 0)
+        {
+            Debug.Log("Game is over");
+        }
+
     }
 
     // 方法：添加分數

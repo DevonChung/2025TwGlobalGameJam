@@ -72,10 +72,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1331469661
-  m_SortingLayer: 3
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4954426c3a68bd3458d417472bd7e39b, type: 3}
+  m_SortingLayerID: -735395521
+  m_SortingLayer: 4
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: b1c6e303e6f24604c966276fdfd2077f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -118,18 +118,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.18709111}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.36, y: 4.14}
+    oldSize: {x: 19.2, y: 10.8}
     newSize: {x: 7.36, y: 4.14}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.36, y: 4.14}
+  m_Size: {x: 7.36, y: 10.220461}
   m_EdgeRadius: 0
 --- !u!114 &2901767793396315208
 MonoBehaviour:
@@ -143,11 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db5469c12eaeba4418c267204d12ed86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NormalBoss: {fileID: 21300000, guid: 4954426c3a68bd3458d417472bd7e39b, type: 3}
-  HitBoss: {fileID: 21300000, guid: 90d22d3b299602d4d9c659e77e7b536e, type: 3}
+  NormalBoss: {fileID: 21300000, guid: b1c6e303e6f24604c966276fdfd2077f, type: 3}
+  HitBoss: {fileID: 21300000, guid: 9bf42602bda00c3438db231a09ca28cb, type: 3}
   bossDirection: 2
   moveSpeed: 8
   Left_moveOffset: {x: 8, y: 8, z: 0}
   Mid_moveOffset: {x: 0, y: 8, z: 0}
   Right_moveOffset: {x: -8, y: 8, z: 0}
+  audioClip: {fileID: 8300000, guid: 452030cb77ef97347a5f2b99f846ad06, type: 3}
   StopSecond: 2

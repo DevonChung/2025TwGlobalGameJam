@@ -23,10 +23,8 @@ public class BubbleData : MonoBehaviour
         }
         else
         {
-            Debug.Log("has item bubble");
-            data.itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length);
-            //todo test
-            data.itemType = ItemType.Bomb;
+          
+            data.itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length);          
             if (itemHolderObj != null)
             {
                 itemHolderObj.SetItemSprite(data.itemType);
@@ -46,7 +44,7 @@ public class BubbleData : MonoBehaviour
         {
             if (accTime > ItemRefreshfrequcy)
             {
-                Debug.Log("refresh");
+              
                 accTime = 0;
                 data.itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length);                
                 if (itemHolderObj != null)

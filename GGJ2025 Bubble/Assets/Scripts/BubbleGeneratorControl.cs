@@ -6,12 +6,14 @@ public class BubbleGeneratorControl : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject bubblePrefab; // 拖入你的 bubble prefab
-
+    public Animator _animator;
     public float interval; // 每次檢查的時間間隔
     public float chance;  // 執行函數的概率 (0.0 ~ 1.0)
     private bool isRunning = true;
     public Vector2 direction;
     private int layer;
+    public AudioClip audioClip;
+
 
     void Start()
     {
@@ -34,6 +36,16 @@ public class BubbleGeneratorControl : MonoBehaviour
         
     }
 
+    void playAnim()
+    {
+      
+        _animator.SetTrigger("Shoot");
+        if (audioClip)
+        {
+            MusicManager.Instance.PlayEffectSound(audioClip, 0.5f);
+        }
+    }
+
     private IEnumerator RandomCallRoutine()
     {
         while (isRunning)
@@ -42,6 +54,8 @@ public class BubbleGeneratorControl : MonoBehaviour
 
             if (Random.value < chance)
             {
+                playAnim();
+                yield return new WaitForSeconds(0.2f);
                 CreateBubble();
             }
         }
@@ -64,17 +78,16 @@ public class BubbleGeneratorControl : MonoBehaviour
             //itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length)
         };
 
-        bubbleAttribute.bHasItem = true;
-        //todo test
-        /*int iItemRand = Random.Range(0, 2);
-        if (iItemRand == 1)
+       // bubbleAttribute.bHasItem = true;
+        int iItemRand = Random.Range(0, 10);
+        if (iItemRand > 5)
         {
             bubbleAttribute.bHasItem = true;
         }
         else
         {
             bubbleAttribute.bHasItem = false;
-        }*/
+        }
 
         BubbleData bubbleData = bubble.GetComponent<BubbleData>();
         bubbleData.InitializeBubble(bubbleAttribute);

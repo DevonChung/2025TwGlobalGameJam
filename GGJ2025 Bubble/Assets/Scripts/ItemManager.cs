@@ -6,6 +6,7 @@ public class ItemManager : MonoBehaviour
 {
 
     public static ItemManager Instance { get; private set; }
+    public ItemBuffUI itemBuffUI;
     public AimManager AimManagerObj;
     public MetalBallFunc metalBallFunc;
     public GameObject InkObj;
@@ -13,6 +14,9 @@ public class ItemManager : MonoBehaviour
     public float DrunkDbPeriod = 5f;
     protected float DrunkAccTime = 0;
     public bool bDrunkCountDown = false;
+    public AudioClip drunkAudio;
+    public AudioClip inkAudio;
+    public AudioClip BuffAudio;
     private void Awake()
     {
         if (Instance == null)
@@ -30,13 +34,24 @@ public class ItemManager : MonoBehaviour
     {
         if (InkObj != null)
         {       
-            Instantiate(InkObj, instinatePosition, transform.rotation);                      
+            Instantiate(InkObj, instinatePosition, transform.rotation);
+            itemBuffUI.AddNewIcon(ItemType.Squid);
+        }
+        if (inkAudio)
+        {
+            MusicManager.Instance.PlayEffectSound(inkAudio, 0.5f);
         }
         Debug.Log("Trigger ink");
     }
     public void TriggerAddBullet()
     {
+        BossGimmick.Instance.GetBullet();
+        itemBuffUI.AddNewIcon(ItemType.Bullet);
         Debug.Log("Add bullet");
+        if (BuffAudio)
+        {
+            MusicManager.Instance.PlayEffectSound(BuffAudio, 0.5f);
+        }
     }
 
     public void TriggerBomb(Vector2 instinatePosition)
@@ -44,6 +59,7 @@ public class ItemManager : MonoBehaviour
         if (BombObj != null)
         {
             Instantiate(BombObj, instinatePosition, transform.rotation);
+            itemBuffUI.AddNewIcon(ItemType.Bomb);
         }
         Debug.Log("trigger Bomb");
     }
@@ -52,16 +68,22 @@ public class ItemManager : MonoBehaviour
     {
         if (AimManagerObj)
         {
+            itemBuffUI.AddNewIcon(ItemType.Beer);
             AimManagerObj.TriggerDrunkEffect(true);
             DrunkAccTime = 0;
             bDrunkCountDown = true;
+            if (drunkAudio)
+            {
+                MusicManager.Instance.PlayEffectSound(BuffAudio, 0.5f);
+            }
         }
     }
 
     public void TriggerMetalBallFunc(Vector2 instinatePosition)
     {
         if (metalBallFunc != null)
-        { 
+        {
+            itemBuffUI.AddNewIcon(ItemType.MetalBall);
             Instantiate(metalBallFunc, instinatePosition, transform.rotation);
         }
     }

@@ -39,12 +39,12 @@ public class MusicManager : MonoBehaviour
     }
 
     // 播放特效音效
-    public void PlayEffectSound(AudioClip effectClip)
+    public void PlayEffectSound(AudioClip effectClip, float in_volune=1.0f)
     {
         // 創建一個新的 AudioSource 用來播放特效音效
         AudioSource newEffectSource = gameObject.AddComponent<AudioSource>();
         newEffectSource.clip = effectClip;
-        newEffectSource.volume = 1f;
+        newEffectSource.volume = in_volune;
         newEffectSource.Play();
 
         // 將新創建的音源添加到列表中，方便管理

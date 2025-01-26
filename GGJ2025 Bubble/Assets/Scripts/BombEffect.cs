@@ -11,9 +11,15 @@ public class BombEffect : MonoBehaviour
 
     }
 
-    void SelfDestroy()
+    public void SelfDestroy()
     {
         Destroy(this.gameObject);
+    }
+
+    void playAnim()
+    {
+        Animator _animator = this.GetComponent<Animator>();
+        _animator.SetTrigger("Explode");
     }
 
     void DetectOverlappingObjects()
@@ -28,7 +34,7 @@ public class BombEffect : MonoBehaviour
             }
             Debug.Log($"detect¡G{collider.name}");
         }
-        SelfDestroy();
+        playAnim();
     }
 
     private void OnDrawGizmos()
