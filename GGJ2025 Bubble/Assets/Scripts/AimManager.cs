@@ -7,14 +7,11 @@ using UnityEngine.UI;
 
 public class AimManager : MonoBehaviour
 {
-    public Canvas canvas; // ©ì¤J¥D Canvas
-    public RectTransform cursorImage; // ©ì¤J´å¼Ğªº UI Image RectTransform
 
     public bool bInDrunkStatus = false;
     public float jitterAmount = 2.0f;
     public LayerMask targetMask;
     public float jitterFrequence = 2;
-    private float nextJitterTime; // ¤U¦¸§İ°Êªº®É¶¡
 
     private GraphicRaycaster graphicRaycaster;
     private PointerEventData pointerEventData;
@@ -23,6 +20,7 @@ public class AimManager : MonoBehaviour
     {
         bInDrunkStatus = bEnable;
     }
+    public AudioClip SFX_Pistol;  // èƒŒæ™¯éŸ³æ¨‚çš„éŸ³æ•ˆ
 
     // Start is called before the first frame update
     void Start()
@@ -30,28 +28,24 @@ public class AimManager : MonoBehaviour
         Cursor.visible = false;
         graphicRaycaster = canvas.GetComponent<GraphicRaycaster>();
 
-        // ªì©l¤Æ PointerEventData
         pointerEventData = new PointerEventData(EventSystem.current);
     }
 
     private void DetectUIElement(Vector2 position)
     {
-        // ²M°£¤§«eªº PointerEventData
         pointerEventData.position = position;
 
-        // «O¦s®g½uÀË´úªºµ²ªG
         var results = new System.Collections.Generic.List<RaycastResult>();
         graphicRaycaster.Raycast(pointerEventData, results);
 
-        // ÀË¬d¬O§_ÂIÀ»¨ì UI ¤¸¥ó
         foreach (var result in results)
         {
             Button button = result.gameObject.GetComponent<Button>();
             if (button != null)
             {
-                // Ä²µo«ö¶sªº onClick ¨Æ¥ó
+                // Ã„Â²ÂµoÂ«Ã¶Â¶sÂªÂº onClick Â¨Ã†Â¥Ã³
                 button.onClick.Invoke();
-                Debug.Log("ÂIÀ»¨ì«ö¶s¡G" + button.name);
+                Debug.Log("Ã‚IÃ€Â»Â¨Ã¬Â«Ã¶Â¶sÂ¡G" + button.name);
             }
         }
     }
@@ -63,11 +57,11 @@ public class AimManager : MonoBehaviour
 
     public void ClickRoutine(Vector2 mousePosition)
     {
+        BossGimmick.Instance.UseBullet();
+        MusicManager.Instance.PlayEffectSound(SFX_Pistol);
         //Physics2D.Raycast(transform.position, travelDirection, 1.0f, layerMask);
         Debug.Log("check click1:" + mousePosition);
         Vector2 mouseCorrelationPosition =
-        Camera.main.ScreenToWorldPoint(mousePosition); // ±N·Æ¹«¿Ã¹õ®y¼ĞÂà´«¬°¥@¬É®y¼Ğ
-      //  Camera.main.ScreenToWorldPoint(Input.mousePosition); // ±N·Æ¹«¿Ã¹õ®y¼ĞÂà´«¬°¥@¬É®y¼Ğ
 
         Debug.Log("check click2:" + mouseCorrelationPosition);
 
@@ -86,15 +80,23 @@ public class AimManager : MonoBehaviour
                 }
             }
 
-            // ½T»{¬O§_ÂIÀ»¨ìª«¥ó
+            // Â½TÂ»{Â¬OÂ§_Ã‚IÃ€Â»Â¨Ã¬ÂªÂ«Â¥Ã³
             GameObject clickedObject = hit.collider.gameObject;
+<<<<<<< .merge_file_d65Ri0
             Debug.LogWarning("ÂIÀ»¨ìª«¥ó¡G" + clickedObject.name);
+=======
+            Debug.LogError("Ã‚IÃ€Â»Â¨Ã¬ÂªÂ«Â¥Ã³Â¡G" + clickedObject.name);
+>>>>>>> .merge_file_jvdVC2
 
-            // §PÂ_¬O§_¬O¯S©wª«¥ó
+            // Â§PÃ‚_Â¬OÂ§_Â¬OÂ¯SÂ©wÂªÂ«Â¥Ã³
             if (clickedObject.CompareTag("BubbleObj"))
             {
                 clickedObject.GetComponent<BubbleData>().BurstBubble();
+<<<<<<< .merge_file_d65Ri0
                 Debug.LogWarning("ÂIÀ»¨ì¥i¤¬°Êª«¥ó¡I");
+=======
+                Debug.LogError("Ã‚IÃ€Â»Â¨Ã¬Â¥iÂ¤Â¬Â°ÃŠÂªÂ«Â¥Ã³Â¡I");
+>>>>>>> .merge_file_jvdVC2
             }
         }
     }
@@ -106,10 +108,10 @@ public class AimManager : MonoBehaviour
         // if (Time.time >= jitterInterval)
         {
             //    JitterCursor();
-            //   nextJitterTime = Time.time + jitterFrequency; // ³]¸m¤U¤@¦¸§İ°Ê®É¶¡
+            //   nextJitterTime = Time.time + jitterFrequency; // Â³]Â¸mÂ¤UÂ¤@Â¦Â¸Â§ÃÂ°ÃŠÂ®Ã‰Â¶Â¡
         }
 
-        // Àò¨ú·Æ¹«ªº¿Ã¹õ®y¼Ğ
+        // Ã€Ã²Â¨ÃºÂ·Ã†Â¹Â«ÂªÂºÂ¿ÃƒÂ¹ÃµÂ®yÂ¼Ã
         Vector3 mousePosition = Input.mousePosition;
 
         Vector3 newMousePosition = mousePosition;
@@ -119,12 +121,17 @@ public class AimManager : MonoBehaviour
             // if (Time.time >= nextJitterTime)
             {
                 newMousePosition = JitterCursor(mousePosition);
+<<<<<<< .merge_file_d65Ri0
+=======
+                nextJitterTime = Time.time + jitterFrequence; // Â³]Â¸mÂ¤UÂ¤@Â¦Â¸Â§ÃÂ°ÃŠÂ®Ã‰Â¶Â¡
+             
+>>>>>>> .merge_file_jvdVC2
             }
         }     
 
         // Debug.Log("original mouse Position:"+ mousePosition);
 
-        // ±N¿Ã¹õ®y¼ĞÂà´«¬° UI ®y¼Ğ
+        // Â±NÂ¿ÃƒÂ¹ÃµÂ®yÂ¼ÃÃ‚Ã Â´Â«Â¬Â° UI Â®yÂ¼Ã
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvas.transform as RectTransform,
             newMousePosition,
@@ -139,7 +146,7 @@ public class AimManager : MonoBehaviour
 
        // Debug.Log("new original mouse Position:"+ newMousePosition);
 
-        // §ó·s´å¼Ğ¦ì¸m
+        // Â§Ã³Â·sÂ´Ã¥Â¼ÃÂ¦Ã¬Â¸m
 
 
         if (Input.GetMouseButtonDown(0) == true)
@@ -155,21 +162,21 @@ public class AimManager : MonoBehaviour
      Vector2 JitterCursor(Vector2 OriginalPos)
     {
        // Debug.Log("trigger jitter");
-        // ­pºâÀH¾÷§İ°Ê°¾²¾
+        // Â­pÂºÃ¢Ã€HÂ¾Ã·Â§ÃÂ°ÃŠÂ°Â¾Â²Â¾
         float offsetX = Random.Range(-jitterAmount, jitterAmount);
         float offsetY = Random.Range(-jitterAmount, jitterAmount);
 
         Vector2 newPos = OriginalPos + new Vector2(offsetX, offsetY);
 
-        // ³]¸m·Æ¹«ªº·s¦ì¸m
+        // Â³]Â¸mÂ·Ã†Â¹Â«ÂªÂºÂ·sÂ¦Ã¬Â¸m
         // Vector3 newPosition = originalPosition + new Vector3(offsetX, offsetY, 0);
 
-        //Cursor.lockState = CursorLockMode.Locked; // Âê©w·Æ¹«¦ì¸m¥H¶i¦æ³]©w
-        //Cursor.lockState = CursorLockMode.None; // ¸ÑÂê·Æ¹«¨Ã¨Ï¦ì¸mÅÜ°Ê¥Í®Ä
+        //Cursor.lockState = CursorLockMode.Locked; // Ã‚ÃªÂ©wÂ·Ã†Â¹Â«Â¦Ã¬Â¸mÂ¥HÂ¶iÂ¦Ã¦Â³]Â©w
+        //Cursor.lockState = CursorLockMode.None; // Â¸Ã‘Ã‚ÃªÂ·Ã†Â¹Â«Â¨ÃƒÂ¨ÃÂ¦Ã¬Â¸mÃ…ÃœÂ°ÃŠÂ¥ÃÂ®Ã„
 
         return newPos;
 
-        // Àx¦s­ì©l¦ì¸m¡]«O«ù´å¼Ğ¦^¨ìªì©l¦ì¸m¡^
+        // Ã€xÂ¦sÂ­Ã¬Â©lÂ¦Ã¬Â¸mÂ¡]Â«OÂ«Ã¹Â´Ã¥Â¼ÃÂ¦^Â¨Ã¬ÂªÃ¬Â©lÂ¦Ã¬Â¸mÂ¡^
         // originalPosition = Input.mousePosition;
     }
 

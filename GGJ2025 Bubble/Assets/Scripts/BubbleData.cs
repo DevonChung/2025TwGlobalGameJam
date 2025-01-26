@@ -12,6 +12,10 @@ public class BubbleData : MonoBehaviour
     public float ItemRefreshfrequcy = 0.7f;
     float accTime = 0;
 
+=======
+    public AudioClip SFX_Bubble_small;  // 背景音樂的音效
+    public AudioClip SFX_Bubble_medium;  // 背景音樂的音效
+    public AudioClip SFX_Bubble_big;  // 背景音樂的音效
     void Start()
     {
         if (data.bHasItem == false)
