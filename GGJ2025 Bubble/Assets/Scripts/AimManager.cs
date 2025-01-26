@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class AimManager : MonoBehaviour
 {
+    public Canvas canvas; // main canvas
+    public RectTransform cursorImage; // cursor image
+
 
     public bool bInDrunkStatus = false;
     public float jitterAmount = 2.0f;
@@ -20,7 +23,7 @@ public class AimManager : MonoBehaviour
     {
         bInDrunkStatus = bEnable;
     }
-    public AudioClip SFX_Pistol;  // 背景音樂的音效
+    public AudioClip SFX_Pistol;  
 
     // Start is called before the first frame update
     void Start()
@@ -43,9 +46,9 @@ public class AimManager : MonoBehaviour
             Button button = result.gameObject.GetComponent<Button>();
             if (button != null)
             {
-                // Ä²µo«ö¶sªº onClick ¨Æ¥ó
+                
                 button.onClick.Invoke();
-                Debug.Log("ÂIÀ»¨ì«ö¶s¡G" + button.name);
+                Debug.Log("click" + button.name);
             }
         }
     }
@@ -61,7 +64,8 @@ public class AimManager : MonoBehaviour
         MusicManager.Instance.PlayEffectSound(SFX_Pistol);
         //Physics2D.Raycast(transform.position, travelDirection, 1.0f, layerMask);
         Debug.Log("check click1:" + mousePosition);
-        Vector2 mouseCorrelationPosition =
+        Vector2 mouseCorrelationPosition = Camera.main.ScreenToWorldPoint(mousePosition); //
+
 
         Debug.Log("check click2:" + mouseCorrelationPosition);
 
@@ -80,23 +84,19 @@ public class AimManager : MonoBehaviour
                 }
             }
 
-            // ½T»{¬O§_ÂIÀ»¨ìª«¥ó
+    
             GameObject clickedObject = hit.collider.gameObject;
-<<<<<<< .merge_file_d65Ri0
-            Debug.LogWarning("�I���쪫��G" + clickedObject.name);
-=======
-            Debug.LogError("ÂIÀ»¨ìª«¥ó¡G" + clickedObject.name);
->>>>>>> .merge_file_jvdVC2
 
-            // §PÂ_¬O§_¬O¯S©wª«¥ó
+            Debug.LogWarning("click�G" + clickedObject.name);
+
+ 
             if (clickedObject.CompareTag("BubbleObj"))
             {
                 clickedObject.GetComponent<BubbleData>().BurstBubble();
-<<<<<<< .merge_file_d65Ri0
-                Debug.LogWarning("�I����i���ʪ���I");
-=======
-                Debug.LogError("ÂIÀ»¨ì¥i¤¬°Êª«¥ó¡I");
->>>>>>> .merge_file_jvdVC2
+
+                Debug.LogWarning("click�I");
+
+               
             }
         }
     }
@@ -108,10 +108,10 @@ public class AimManager : MonoBehaviour
         // if (Time.time >= jitterInterval)
         {
             //    JitterCursor();
-            //   nextJitterTime = Time.time + jitterFrequency; // ³]¸m¤U¤@¦¸§Ý°Ê®É¶¡
+            //   nextJitterTime = Time.time + jitterFrequency; // ³]¸m¤U¤@¦¸§?°?®?¶¡
         }
 
-        // Àò¨ú·Æ¹«ªº¿Ã¹õ®y¼Ð
+   
         Vector3 mousePosition = Input.mousePosition;
 
         Vector3 newMousePosition = mousePosition;
@@ -121,17 +121,13 @@ public class AimManager : MonoBehaviour
             // if (Time.time >= nextJitterTime)
             {
                 newMousePosition = JitterCursor(mousePosition);
-<<<<<<< .merge_file_d65Ri0
-=======
-                nextJitterTime = Time.time + jitterFrequence; // ³]¸m¤U¤@¦¸§Ý°Ê®É¶¡
-             
->>>>>>> .merge_file_jvdVC2
+
             }
         }     
 
         // Debug.Log("original mouse Position:"+ mousePosition);
 
-        // ±N¿Ã¹õ®y¼ÐÂà´«¬° UI ®y¼Ð
+      
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvas.transform as RectTransform,
             newMousePosition,
@@ -146,7 +142,7 @@ public class AimManager : MonoBehaviour
 
        // Debug.Log("new original mouse Position:"+ newMousePosition);
 
-        // §ó·s´å¼Ð¦ì¸m
+    
 
 
         if (Input.GetMouseButtonDown(0) == true)
@@ -162,22 +158,15 @@ public class AimManager : MonoBehaviour
      Vector2 JitterCursor(Vector2 OriginalPos)
     {
        // Debug.Log("trigger jitter");
-        // ­pºâÀH¾÷§Ý°Ê°¾²¾
+    
         float offsetX = Random.Range(-jitterAmount, jitterAmount);
         float offsetY = Random.Range(-jitterAmount, jitterAmount);
 
         Vector2 newPos = OriginalPos + new Vector2(offsetX, offsetY);
 
-        // ³]¸m·Æ¹«ªº·s¦ì¸m
-        // Vector3 newPosition = originalPosition + new Vector3(offsetX, offsetY, 0);
-
-        //Cursor.lockState = CursorLockMode.Locked; // Âê©w·Æ¹«¦ì¸m¥H¶i¦æ³]©w
-        //Cursor.lockState = CursorLockMode.None; // ¸ÑÂê·Æ¹«¨Ã¨Ï¦ì¸mÅÜ°Ê¥Í®Ä
-
         return newPos;
 
-        // Àx¦s­ì©l¦ì¸m¡]«O«ù´å¼Ð¦^¨ìªì©l¦ì¸m¡^
-        // originalPosition = Input.mousePosition;
+     
     }
 
 }
