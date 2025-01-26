@@ -146,8 +146,8 @@ public class AimManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) == true)
         {
             DetectUIElement(Input.mousePosition);
-            Debug.Log("Original mouse in: " + newMousePosition);
-            Debug.Log("new mouse  in: " + FinalMouseCursorPoint);
+          //  Debug.Log("Original mouse in: " + newMousePosition);
+           // Debug.Log("new mouse  in: " + FinalMouseCursorPoint);
             ClickRoutine(newMousePosition);
         }
       

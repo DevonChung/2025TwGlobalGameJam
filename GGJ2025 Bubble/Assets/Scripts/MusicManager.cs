@@ -23,6 +23,14 @@ public class MusicManager : MonoBehaviour
             Debug.LogWarning("Duplicate Singleton instance detected. Destroying duplicate.");
             Destroy(gameObject); // Destroy any duplicate instance
         }
+        // 確保有一個 AudioSource 組件，如果沒有，就添加一個
+        backgroundAudioSource = gameObject.AddComponent<AudioSource>();
+        // 設置音樂為循環播放
+        backgroundAudioSource.loop = true;
+
+        // 設置音效並播放
+        backgroundAudioSource.volume = 0.5f;
+        backgroundAudioSource.clip = backgroundMusic;
     }
 
     public void StopBackGroundMusic()
@@ -44,15 +52,8 @@ public class MusicManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 確保有一個 AudioSource 組件，如果沒有，就添加一個
-        backgroundAudioSource = gameObject.AddComponent<AudioSource>();
-        // 設置音樂為循環播放
-        backgroundAudioSource.loop = true;
-
-        // 設置音效並播放
-        backgroundAudioSource.volume = 0.5f;
-        backgroundAudioSource.clip = backgroundMusic;
-       // backgroundAudioSource.Play();
+       
+      //  backgroundAudioSource.Play();
     }
 
     // 播放特效音效

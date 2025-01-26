@@ -52,4 +52,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   jitterFrequence: 1
-  SFX_Pistol: {fileID: 8300000, guid: ee172c298694c754fb366f7ba0300236, type: 3}
+  SFX_Pistol: {fileID: 8300000, guid: fe70922747041a944a59ee1acb9bce0c, type: 3}

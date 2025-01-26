@@ -725,7 +725,7 @@ MonoBehaviour:
   middleScoreSprite: {fileID: 21300000, guid: 64ffdfb5ca3bacc4baa2516d2d963941, type: 3}
   lowScoreSprite: {fileID: 21300000, guid: 6a42f7040f72f9e439ad772a079eaac2, type: 3}
   BadEnd: {fileID: 8300000, guid: b61a4f9ab4f110c4f8a2f0bd88a83078, type: 3}
-  NeutralEnd: {fileID: 8300000, guid: 7d2440f7597eee648ba2e1b57b89882d, type: 3}
+  NeutralEnd: {fileID: 8300000, guid: 759345d3cc235bf4690c8b250d82fc20, type: 3}
   GoodEnd: {fileID: 8300000, guid: 2dd93e49c4d000045b5aeab0f6b8b1cd, type: 3}
 --- !u!114 &1831787815
 MonoBehaviour:

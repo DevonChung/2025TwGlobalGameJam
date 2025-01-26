@@ -22,7 +22,7 @@ public class ItemManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 絋玂初春ち传ぃ穦砆綪反
+          //1  DontDestroyOnLoad(gameObject); // 絋玂初春ち传ぃ穦砆綪反
         }
         else
         {
