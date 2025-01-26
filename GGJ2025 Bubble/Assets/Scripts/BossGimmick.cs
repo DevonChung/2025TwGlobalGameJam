@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BossGimmick : MonoBehaviour
 {
@@ -18,8 +19,12 @@ public class BossGimmick : MonoBehaviour
     public float CurrentAccTime = 0;
     public bool bStartGimmick = false;
 
-    public TextMeshProUGUI TensText;
-    public TextMeshProUGUI UnitsText;
+    public GameObject TensObject;
+    public GameObject UnitsObject;
+    private Image targetTensImage;
+    private Image targetUnitsImage;
+
+    public List<Sprite> numberSprites;
 
     public GameObject[] bubbleGenerator;
 
@@ -38,7 +43,7 @@ public class BossGimmick : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-          //  DontDestroyOnLoad(gameObject); // Optional: Preserve the object between scenes
+            //  DontDestroyOnLoad(gameObject); // Optional: Preserve the object between scenes
         }
         else
         {
@@ -90,13 +95,13 @@ public class BossGimmick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameStatus.currentBulletCount< BossTriggerBulletNum)
+        if (gameStatus.currentBulletCount < BossTriggerBulletNum)
         {
             bStartGimmick = true;
         }
         if (bStartGimmick)
         {
-          
+
             if (CurrentAccTime > GimmickFrequency)
             {
                 CurrentAccTime = 0;
@@ -121,9 +126,27 @@ public class BossGimmick : MonoBehaviour
         gameStatus.score += points;
         if (gameStatus.score > 99)
             gameStatus.score = 99;
-        TensText.text = (gameStatus.score / 10).ToString(); // 設定文字為數字
-      
-        UnitsText.text = (gameStatus.score % 10).ToString(); // 設定文字為數字
+
+        if (TensObject != null)
+        {
+            targetTensImage = TensObject.GetComponent<Image>();
+        }
+
+        if (targetTensImage != null && numberSprites[(gameStatus.score / 10)] != null)
+        {
+            targetTensImage.sprite = numberSprites[(gameStatus.score / 10)];
+        }
+
+        if (UnitsObject != null)
+        {
+            targetUnitsImage = UnitsObject.GetComponent<Image>();
+        }
+
+        if (targetUnitsImage != null && numberSprites[(gameStatus.score % 10)] != null)
+        {
+            targetUnitsImage.sprite = numberSprites[(gameStatus.score % 10)];
+        }
+
     }
 
     // 方法：減少子彈數量
