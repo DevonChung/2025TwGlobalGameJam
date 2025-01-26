@@ -8,7 +8,6 @@ public class BossGimmick : MonoBehaviour
     public static BossGimmick Instance { get; private set; }
 
     public int defaultBulletCount;
-    public GameObject scoreBackgroundImage;
     private GameStatus gameStatus;
 
     public bool bGimmickActive = false;
@@ -21,11 +20,11 @@ public class BossGimmick : MonoBehaviour
     public TextMeshProUGUI TensText;
     public TextMeshProUGUI UnitsText;
 
-    [ContextMenu("°õ¦æ MyFunction")]
+    [ContextMenu("TriggerMyFunction")]
     public void MyFunction()
     {
         bStartGimmick = !bStartGimmick;
-        Debug.Log("«ö¤U¥kÁä¿ï³æ¤¤ªº«ö¶sÄ²µo³o­Ó¨ç¼Æ¡I");
+        Debug.Log("Triggermy function");
     }
 
     void Awake()

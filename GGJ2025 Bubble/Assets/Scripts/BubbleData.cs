@@ -12,9 +12,9 @@ public class BubbleData : MonoBehaviour
     public float ItemRefreshfrequcy = 0.7f;
     float accTime = 0;
 
-    public AudioClip SFX_Bubble_small;  // 背景音樂的音效
-    public AudioClip SFX_Bubble_medium;  // 背景音樂的音效
-    public AudioClip SFX_Bubble_big;  // 背景音樂的音效
+    public AudioClip SFX_Bubble_small;  // 
+    public AudioClip SFX_Bubble_medium;  // 
+    public AudioClip SFX_Bubble_big;  //
     void Start()
     {
         if (data.bHasItem == false)
@@ -25,6 +25,8 @@ public class BubbleData : MonoBehaviour
         {
             Debug.Log("has item bubble");
             data.itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length);
+            //todo test
+            data.itemType = ItemType.Bomb;
             if (itemHolderObj != null)
             {
                 itemHolderObj.SetItemSprite(data.itemType);
@@ -37,7 +39,7 @@ public class BubbleData : MonoBehaviour
     {
         if (direction != Vector2.zero)
         {
-            // 持續移動 Bubble
+            
             transform.position += (Vector3)(direction * data.speed * Time.deltaTime);
         }
         if (data.bHasItem == true)
@@ -46,7 +48,7 @@ public class BubbleData : MonoBehaviour
             {
                 Debug.Log("refresh");
                 accTime = 0;
-                data.itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length);
+                data.itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length);                
                 if (itemHolderObj != null)
                 {
                     itemHolderObj.SetItemSprite(data.itemType);
@@ -63,10 +65,9 @@ public class BubbleData : MonoBehaviour
     {
         this.data = data;
 
-        // 初始化 BubbleData
-        transform.localScale = Vector3.one * data.size; // 根據大小縮放
-        // 將角度轉換為方向向量
-        //float angle = Random.Range(0, 360f); // 隨機角度（你也可以從外部傳入）
+       
+        transform.localScale = Vector3.one * data.size; //
+       
         direction = data.direction;
 
         StartCoroutine(DestroySelfAfterDelay());
@@ -79,6 +80,22 @@ public class BubbleData : MonoBehaviour
             if (data.itemType == ItemType.MetalBall)
             {
                 ItemManager.Instance.TriggerMetalBallFunc(this.transform.position);
+            }
+            else if (data.itemType == ItemType.Beer)
+            {
+                ItemManager.Instance.TriggerDrunkEffect();
+            }
+            else if (data.itemType == ItemType.Bullet)
+            {
+                ItemManager.Instance.TriggerAddBullet();
+            }
+            else if (data.itemType == ItemType.Squid)
+            {
+                ItemManager.Instance.TriggerInk(this.transform.position);
+            }
+            else if (data.itemType == ItemType.Bomb)
+            {
+                ItemManager.Instance.TriggerBomb(this.transform.position);
             }
         }
     }

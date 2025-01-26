@@ -33,7 +33,7 @@ public class MusicManager : MonoBehaviour
         backgroundAudioSource.loop = true;
 
         // 設置音效並播放
-        backgroundAudioSource.volume = 0f;
+        backgroundAudioSource.volume = 0.3f;
         backgroundAudioSource.clip = backgroundMusic;
         backgroundAudioSource.Play();
     }

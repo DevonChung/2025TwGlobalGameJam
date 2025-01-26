@@ -210,9 +210,12 @@ MonoBehaviour:
     layer: 0
     bHasItem: 0
     itemType: 0
-  secToDestory: 2
+  secToDestory: 5
   itemHolderObj: {fileID: 8043624012610547909}
   ItemRefreshfrequcy: 0.7
+  SFX_Bubble_small: {fileID: 8300000, guid: 0b1d8c4cb688efe43aae5c66981c6c1b, type: 3}
+  SFX_Bubble_medium: {fileID: 8300000, guid: 95d14e38fd5c865408549a45afb524e9, type: 3}
+  SFX_Bubble_big: {fileID: 8300000, guid: a5eead4f4ea19c44099f163621ffc35d, type: 3}
 --- !u!58 &760654081495912896
 CircleCollider2D:
   m_ObjectHideFlags: 0
