@@ -49,31 +49,32 @@ public class BubbleGeneratorControl : MonoBehaviour
 
     public void CreateBubble()
     {
-        Vector2 spawnPosition = transform.position; // 使用當前 GameObject 的位置
+        Vector2 spawnPosition = transform.position; 
 
         GameObject bubble = Instantiate(bubblePrefab, spawnPosition, Quaternion.identity);
         float sizeTemp = new float[] { 0.5f, 0.75f, 1f }[Random.Range(0, 3)];
         int scoreForSize = sizeTemp == 0.5f ? 3 : (sizeTemp == 0.75f ? 2 : 1);
         BubbleAttribute bubbleAttribute = new BubbleAttribute
         {
-            size = sizeTemp,  // 隨機選擇 1, 2, 或 3
-            speed = Random.Range(1.0f, 5.0f),
+            size = sizeTemp,  // random 1, 2, 或 3
+            speed = Random.Range(1.0f, 2.0f),
             score = scoreForSize,
             direction = this.direction,
             layer = this.layer,
             //itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length)
         };
 
-        int iItemRand = Random.Range(0, 2);
+        bubbleAttribute.bHasItem = true;
+        //todo test
+        /*int iItemRand = Random.Range(0, 2);
         if (iItemRand == 1)
         {
             bubbleAttribute.bHasItem = true;
-            //itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length);
         }
         else
         {
             bubbleAttribute.bHasItem = false;
-        }
+        }*/
 
         BubbleData bubbleData = bubble.GetComponent<BubbleData>();
         bubbleData.InitializeBubble(bubbleAttribute);

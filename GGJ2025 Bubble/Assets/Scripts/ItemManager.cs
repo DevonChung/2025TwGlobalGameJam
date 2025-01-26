@@ -9,6 +9,7 @@ public class ItemManager : MonoBehaviour
     public AimManager AimManagerObj;
     public MetalBallFunc metalBallFunc;
     public GameObject InkObj;
+    public BombEffect BombObj;
     public float DrunkDbPeriod = 5f;
     protected float DrunkAccTime = 0;
     public bool bDrunkCountDown = false;
@@ -25,11 +26,11 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    public void TriggerInk()
+    public void TriggerInk(Vector2 instinatePosition)
     {
         if (InkObj != null)
-        {
-            InkObj.SetActive(true);
+        {       
+            Instantiate(InkObj, instinatePosition, transform.rotation);                      
         }
         Debug.Log("Trigger ink");
     }
@@ -38,8 +39,12 @@ public class ItemManager : MonoBehaviour
         Debug.Log("Add bullet");
     }
 
-    public void TriggerBomb()
+    public void TriggerBomb(Vector2 instinatePosition)
     {
+        if (BombObj != null)
+        {
+            Instantiate(BombObj, instinatePosition, transform.rotation);
+        }
         Debug.Log("trigger Bomb");
     }
 
