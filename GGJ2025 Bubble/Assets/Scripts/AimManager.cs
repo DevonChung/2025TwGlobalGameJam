@@ -19,6 +19,11 @@ public class AimManager : MonoBehaviour
     private GraphicRaycaster graphicRaycaster;
     private PointerEventData pointerEventData;
 
+    public void TriggerDrunkEffect(bool bEnable)
+    {
+        bInDrunkStatus = bEnable;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,13 +88,13 @@ public class AimManager : MonoBehaviour
 
             // 確認是否點擊到物件
             GameObject clickedObject = hit.collider.gameObject;
-            Debug.LogError("點擊到物件：" + clickedObject.name);
+            Debug.LogWarning("點擊到物件：" + clickedObject.name);
 
             // 判斷是否是特定物件
             if (clickedObject.CompareTag("BubbleObj"))
             {
                 clickedObject.GetComponent<BubbleData>().BurstBubble();
-                Debug.LogError("點擊到可互動物件！");
+                Debug.LogWarning("點擊到可互動物件！");
             }
         }
     }
@@ -114,8 +119,6 @@ public class AimManager : MonoBehaviour
             // if (Time.time >= nextJitterTime)
             {
                 newMousePosition = JitterCursor(mousePosition);
-                nextJitterTime = Time.time + jitterFrequence; // 設置下一次抖動時間
-             
             }
         }     
 

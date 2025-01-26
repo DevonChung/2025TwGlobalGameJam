@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1783585512979203811}
   - component: {fileID: 7185251362164483454}
+  - component: {fileID: 8043624012610547909}
   m_Layer: 6
   m_Name: ItemPic
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1466917225008840302}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.53, y: 0.15, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73,17 +74,34 @@ SpriteRenderer:
   m_SortingLayerID: -1145546251
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ee90f56858bc9704ebf61fe10e354a98, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7058824}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 23.603092, y: 16.4}
+  m_Size: {x: 3.9338489, y: 2.7333333}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8043624012610547909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466917225008840302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e16ac37ccb2924db1046c20738fe96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  metal_ball: {fileID: 21300000, guid: ee90f56858bc9704ebf61fe10e354a98, type: 3}
+  bomb: {fileID: 21300000, guid: e694413a6215dc8478b1d9bb44134cce, type: 3}
+  beer: {fileID: 21300000, guid: 1b321d046b3db434e930f5758987b2b0, type: 3}
+  squid: {fileID: 21300000, guid: 5902e1fee5e403d47abf4f50b74aa392, type: 3}
+  bullet: {fileID: 21300000, guid: 81fe6374189052d4d814d1166c3760b2, type: 3}
 --- !u!1 &1631214608727041992
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,8 +202,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126287c140879d04d9b92b073fbc67c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data:
+    size: 0
+    speed: 0
+    direction: {x: 0, y: 0}
+    score: 0
+    layer: 0
+    bHasItem: 0
+    itemType: 0
   secToDestory: 2
-  gameManager: {fileID: 6160216503382157749, guid: 3b34250cb15a70c48a8cc628888e5e36, type: 3}
+  itemHolderObj: {fileID: 8043624012610547909}
+  ItemRefreshfrequcy: 0.7
 --- !u!58 &760654081495912896
 CircleCollider2D:
   m_ObjectHideFlags: 0

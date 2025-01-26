@@ -67,9 +67,20 @@ public class BubbleGeneratorControl : MonoBehaviour
             score = scoreForSize,
             direction = this.direction,
             layer = this.layer,
-            itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length)
+            //itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length)
         };
-		
+
+        int iItemRand = Random.Range(0, 2);
+        if (iItemRand == 1)
+        {
+            bubbleAttribute.bHasItem = true;
+            //itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length);
+        }
+        else
+        {
+            bubbleAttribute.bHasItem = false;
+        }
+
         BubbleData bubbleData = bubble.GetComponent<BubbleData>();
         bubbleData.InitializeBubble(bubbleAttribute);
 

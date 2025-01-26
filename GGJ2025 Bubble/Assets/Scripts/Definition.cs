@@ -19,7 +19,9 @@ public enum ItemType
 {
     MetalBall,
     Beer,
-    Squid
+    Squid,
+    Bomb,
+    Bullet
 }
 
 public class GameStatus

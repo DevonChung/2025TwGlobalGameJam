@@ -8,11 +8,25 @@ public class BubbleData : MonoBehaviour
     public  BubbleAttribute data;
     private Vector2 direction;
     public float secToDestory;
+    public ItemHolder itemHolderObj;
+    public float ItemRefreshfrequcy = 0.7f;
+    float accTime = 0;
 
     void Start()
     {
-        data.bHasItem = true;
-        data.itemType = ItemType.MetalBall;
+        if (data.bHasItem == false)
+        {
+            itemHolderObj.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("has item bubble");
+            data.itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length);
+            if (itemHolderObj != null)
+            {
+                itemHolderObj.SetItemSprite(data.itemType);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -22,6 +36,23 @@ public class BubbleData : MonoBehaviour
         {
             // 持續移動 Bubble
             transform.position += (Vector3)(direction * data.speed * Time.deltaTime);
+        }
+        if (data.bHasItem == true)
+        {
+            if (accTime > ItemRefreshfrequcy)
+            {
+                Debug.Log("refresh");
+                accTime = 0;
+                data.itemType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length);
+                if (itemHolderObj != null)
+                {
+                    itemHolderObj.SetItemSprite(data.itemType);
+                }
+            }
+            else
+            {
+                accTime += Time.deltaTime;
+            }
         }
     }
 
@@ -59,13 +90,9 @@ public class BubbleData : MonoBehaviour
         this.GetComponent<CircleCollider2D>().enabled = false;
         Animator _animator = this.GetComponent<Animator>();
         _animator.SetTrigger("Burst");
-<<<<<<< HEAD
         PerformItemRoutine();
-=======
-
         Debug.Log("data.score: " + data.score);
         BossGimmick.Instance.AddScore(data.score);
->>>>>>> origin/main
     }
 
     IEnumerator DestroySelfAfterDelay()

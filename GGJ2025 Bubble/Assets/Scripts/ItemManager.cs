@@ -6,8 +6,12 @@ public class ItemManager : MonoBehaviour
 {
 
     public static ItemManager Instance { get; private set; }
+    public AimManager AimManagerObj;
     public MetalBallFunc metalBallFunc;
-
+    public GameObject InkObj;
+    public float DrunkDbPeriod = 5f;
+    protected float DrunkAccTime = 0;
+    public bool bDrunkCountDown = false;
     private void Awake()
     {
         if (Instance == null)
@@ -21,11 +25,40 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-  
+    public void TriggerInk()
+    {
+        if (InkObj != null)
+        {
+            InkObj.SetActive(true);
+        }
+        Debug.Log("Trigger ink");
+    }
+    public void TriggerAddBullet()
+    {
+        Debug.Log("Add bullet");
+    }
+
+    public void TriggerBomb()
+    {
+        Debug.Log("trigger Bomb");
+    }
+
+    public void TriggerDrunkEffect()
+    {
+        if (AimManagerObj)
+        {
+            AimManagerObj.TriggerDrunkEffect(true);
+            DrunkAccTime = 0;
+            bDrunkCountDown = true;
+        }
+    }
 
     public void TriggerMetalBallFunc(Vector2 instinatePosition)
     {
-        Instantiate(metalBallFunc, instinatePosition, transform.rotation);
+        if (metalBallFunc != null)
+        { 
+            Instantiate(metalBallFunc, instinatePosition, transform.rotation);
+        }
     }
 
     // Start is called before the first frame update
@@ -37,6 +70,18 @@ public class ItemManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (bDrunkCountDown)
+        {
+            if (DrunkAccTime > DrunkDbPeriod)
+            {
+                DrunkAccTime = 0;
+                AimManagerObj.TriggerDrunkEffect(false);
+                bDrunkCountDown = false;
+            }
+            else
+            { 
+                DrunkAccTime += Time.deltaTime;
+            }
+        }
     }
 }
