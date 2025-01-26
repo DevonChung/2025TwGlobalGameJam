@@ -21,6 +21,8 @@ public class BossGimmick : MonoBehaviour
     public TextMeshProUGUI TensText;
     public TextMeshProUGUI UnitsText;
 
+    public GameObject[] bubbleGenerator;
+
     [ContextMenu("°õ¦æ MyFunction")]
     public void MyFunction()
     {
@@ -118,6 +120,23 @@ public class BossGimmick : MonoBehaviour
         if (gameStatus.currentTriggeredItem.Contains(item))
         {
             gameStatus.currentTriggeredItem.Remove(item);
+        }
+    }
+
+    public void StartNewGame()
+    {
+        foreach (GameObject generator in bubbleGenerator)
+        {
+            if (generator.transform.childCount > 0)
+            {
+                Transform child = generator.transform.GetChild(0);
+                BubbleGeneratorControl bubbleScript = child.GetComponent<BubbleGeneratorControl>();
+
+                if (bubbleScript != null)
+                {
+                    bubbleScript.StartTigger();
+                }
+            }
         }
     }
 }
