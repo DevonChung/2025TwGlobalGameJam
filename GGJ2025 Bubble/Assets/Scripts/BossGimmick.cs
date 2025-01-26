@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossGimmick : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class BossGimmick : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Optional: Preserve the object between scenes
+          //  DontDestroyOnLoad(gameObject); // Optional: Preserve the object between scenes
         }
         else
         {
@@ -55,9 +56,33 @@ public class BossGimmick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetDefault();
+        UpdateBulletDisplay();
+        TriggetBubbleGenerator();
+    }
+
+    public void TriggetBubbleGenerator()
+    {
+        foreach (GameObject generator in bubbleGenerator)
+        {
+            if (generator.transform.childCount > 0)
+            {
+                Transform child = generator.transform.GetChild(0);
+                BubbleGeneratorControl bubbleScript = child.GetComponent<BubbleGeneratorControl>();
+
+                if (bubbleScript != null)
+                {
+                    bubbleScript.StartTigger();
+                }
+            }
+        }
+    }
+
+
+    public void SetDefault()
+    {
         gameStatus = new GameStatus();
         gameStatus.currentBulletCount = defaultBulletCount;
-        UpdateBulletDisplay();
     }
 
     // Update is called once per frame
@@ -84,12 +109,9 @@ public class BossGimmick : MonoBehaviour
         gameStatus.score += points;
         if (gameStatus.score > 99)
             gameStatus.score = 99;
-        Debug.Log("gameStatus.score: " + gameStatus.score);
         TensText.text = (gameStatus.score / 10).ToString(); // 設定文字為數字
-        Debug.Log("Tens: " + TensText.text);
       
         UnitsText.text = (gameStatus.score % 10).ToString(); // 設定文字為數字
-        Debug.Log("Units: " + UnitsText.text);
     }
 
     // 方法：減少子彈數量
@@ -100,6 +122,24 @@ public class BossGimmick : MonoBehaviour
             gameStatus.currentBulletCount--;
         }
         UpdateBulletDisplay();
+
+        Debug.LogError("gameStatus.currentBulletCount: " + gameStatus.currentBulletCount);
+        if (gameStatus.currentBulletCount <= 0)
+        {
+            Debug.LogError("GameOver");
+            GameOver();
+        }
+    }
+
+    public void GameOver()
+    {
+        PlayerPrefs.SetInt("FinalScore", gameStatus.score);
+        Debug.LogError("FinalScore: " + gameStatus.score);
+        PlayerPrefs.Save();
+
+        SetDefault();
+
+        SceneManager.LoadScene("Finish");
     }
 
     // 方法：減少子彈數量
@@ -127,23 +167,6 @@ public class BossGimmick : MonoBehaviour
         }
     }
 
-    public void StartNewGame()
-    {
-        foreach (GameObject generator in bubbleGenerator)
-        {
-            if (generator.transform.childCount > 0)
-            {
-                Transform child = generator.transform.GetChild(0);
-                BubbleGeneratorControl bubbleScript = child.GetComponent<BubbleGeneratorControl>();
-
-                if (bubbleScript != null)
-                {
-                    bubbleScript.StartTigger();
-                }
-            }
-        }
-    }
-
     void UpdateBulletDisplay()
     {
         if (bulletBackgroundImage == null)
@@ -153,9 +176,6 @@ public class BossGimmick : MonoBehaviour
         }
 
         int childCount = bulletBackgroundImage.transform.childCount;
-
-        Debug.LogError("aaaa " + gameStatus.currentBulletCount);
-        Debug.LogError("childCount " + childCount);
 
         for (int i = 0; i < childCount; i++)
         {
