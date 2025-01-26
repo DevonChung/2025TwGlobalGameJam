@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultBulletCount: 0
-  scoreBackgroundImage: {fileID: 6606052371848503017, guid: 2ba8aa3f67c7a614ea2176bfa8dce1ee, type: 3}
   bGimmickActive: 0
   BossLists:
   - {fileID: 0}
@@ -54,3 +53,19 @@ MonoBehaviour:
   GimmickFrequency: 5
   CurrentAccTime: 0
   bStartGimmick: 0
+  TensObject: {fileID: 0}
+  UnitsObject: {fileID: 0}
+  numberSprites:
+  - {fileID: -144943580, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
+  - {fileID: -931207255, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
+  - {fileID: 1392938495, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
+  - {fileID: 1492832414, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
+  - {fileID: 1208685001, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
+  - {fileID: 1577626970, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
+  - {fileID: -1760457688, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
+  - {fileID: 755690426, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
+  - {fileID: 1116983293, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
+  - {fileID: 1098284072, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
+  bubbleGenerator: []
+  bulletBackgroundImage: {fileID: 0}
+  BossTriggerBulletNum: 4
