@@ -52,6 +52,7 @@ public class ItemManager : MonoBehaviour
         {
             MusicManager.Instance.PlayEffectSound(BuffAudio, 0.5f);
         }
+
     }
 
     public void TriggerBomb(Vector2 instinatePosition)
@@ -74,7 +75,7 @@ public class ItemManager : MonoBehaviour
             bDrunkCountDown = true;
             if (drunkAudio)
             {
-                MusicManager.Instance.PlayEffectSound(BuffAudio, 0.5f);
+                MusicManager.Instance.PlayEffectSound(drunkAudio, 0.5f);
             }
         }
     }

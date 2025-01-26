@@ -160,7 +160,7 @@ public class BossGimmick : MonoBehaviour
      
         if (gameStatus.currentBulletCount <= 0)
         {
-            Debug.LogError("GameOver");
+            Debug.Log("GameOver");
             MusicManager.Instance.StopBackGroundMusic();
             GameOver();
         }
@@ -169,7 +169,7 @@ public class BossGimmick : MonoBehaviour
     public void GameOver()
     {
         PlayerPrefs.SetInt("FinalScore", gameStatus.score);
-        Debug.LogError("FinalScore: " + gameStatus.score);
+        Debug.Log("FinalScore: " + gameStatus.score);
         PlayerPrefs.Save();
         Cursor.visible = true;
         SetDefault();

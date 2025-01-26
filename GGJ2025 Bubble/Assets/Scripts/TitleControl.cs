@@ -8,7 +8,7 @@ public class TitleControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        MusicManager.Instance.StartBackgourndMusic();
     }
 
     // Update is called once per frame

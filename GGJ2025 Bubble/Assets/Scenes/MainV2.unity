@@ -388,7 +388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1392938495, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
+  m_Sprite: {fileID: -144943580, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -966,7 +966,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -931207255, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
+  m_Sprite: {fileID: -144943580, guid: 4f021838cc8247c4fa8ddf98fd5be3d1, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1108,6 +1108,14 @@ PrefabInstance:
       propertyPath: UnitsText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4493128501477118190, guid: 3b34250cb15a70c48a8cc628888e5e36, type: 3}
+      propertyPath: TensObject
+      value: 
+      objectReference: {fileID: 282166658}
+    - target: {fileID: 4493128501477118190, guid: 3b34250cb15a70c48a8cc628888e5e36, type: 3}
+      propertyPath: UnitsObject
+      value: 
+      objectReference: {fileID: 1094774044}
     - target: {fileID: 4493128501477118190, guid: 3b34250cb15a70c48a8cc628888e5e36, type: 3}
       propertyPath: GimmickFrequency
       value: 4
@@ -2552,6 +2560,18 @@ PrefabInstance:
       propertyPath: BombObj
       value: 
       objectReference: {fileID: 1222843418630118636, guid: 27f62fec24f048a4b8bfb68d8f17e578, type: 3}
+    - target: {fileID: 4764981359607247914, guid: ed01a7ef02865ce4dab6f4f14e8cf5e2, type: 3}
+      propertyPath: inkAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 38b2e5826eef7db409062050537d3720, type: 3}
+    - target: {fileID: 4764981359607247914, guid: ed01a7ef02865ce4dab6f4f14e8cf5e2, type: 3}
+      propertyPath: BuffAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 306ef9a1a8f60654a919c03f0df4eb8b, type: 3}
+    - target: {fileID: 4764981359607247914, guid: ed01a7ef02865ce4dab6f4f14e8cf5e2, type: 3}
+      propertyPath: drunkAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 2540385dbbb22184e9718ed666f0f45d, type: 3}
     - target: {fileID: 4764981359607247914, guid: ed01a7ef02865ce4dab6f4f14e8cf5e2, type: 3}
       propertyPath: itemBuffUI
       value: 
