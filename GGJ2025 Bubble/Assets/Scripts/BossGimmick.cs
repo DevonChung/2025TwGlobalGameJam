@@ -134,8 +134,7 @@ public class BossGimmick : MonoBehaviour
             gameStatus.currentBulletCount--;
         }
         UpdateBulletDisplay();
-
-        Debug.LogError("gameStatus.currentBulletCount: " + gameStatus.currentBulletCount);
+     
         if (gameStatus.currentBulletCount <= 0)
         {
             Debug.LogError("GameOver");

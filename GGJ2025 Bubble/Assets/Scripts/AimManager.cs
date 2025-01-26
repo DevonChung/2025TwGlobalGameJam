@@ -88,17 +88,12 @@ public class AimManager : MonoBehaviour
 
 
                 GameObject clickedObject = hit.collider.gameObject;
-
-                Debug.LogWarning("click¡G" + clickedObject.name);
-
+            
 
                 if (clickedObject.CompareTag("BubbleObj"))
                 {
                     clickedObject.GetComponent<BubbleData>().BurstBubble();
-
-                    Debug.LogWarning("click¡I");
-
-
+                 
                 }
             }
         }
